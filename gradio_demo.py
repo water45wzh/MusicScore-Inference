@@ -14,7 +14,7 @@ from utils import count_params, instantiate_from_config
 def generate_image(
     prompt, ckpt_path, config_path, resolution, n_sample, cfg_scale, ddim_steps, outpath
 ):
-    device = torch.device("cuda")
+    device = torch.device("mps")
 
     config = OmegaConf.load(config_path)
     print(f"Loading model by config: {config_path}")
@@ -46,9 +46,11 @@ def generate_image(
     model.to(device)
 
     C = config.model.params.channels  # num of latent channel
-    H, W = resolution, resolution
+    H, W = int(resolution), int(resolution)
     f = 8
-    shape = [C, H // f, W // f]
+    sH = H//f
+    sW = W//f
+    shape = [C, sH, sW]
     sampler = DDIMSampler(model, device=device)
 
     log = f"""

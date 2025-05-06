@@ -14,7 +14,7 @@ from ldm.modules.diffusionmodules.util import (
 
 
 class DDIMSampler(object):
-    def __init__(self, model, schedule="linear", device=torch.device("cuda"), **kwargs):
+    def __init__(self, model, schedule="linear", device=torch.device("mps"), **kwargs):
         super().__init__()
         self.model = model
         self.ddpm_num_timesteps = model.num_timesteps
@@ -22,9 +22,10 @@ class DDIMSampler(object):
         self.device = device
 
     def register_buffer(self, name, attr):
+        to_torch = lambda x: x.clone().detach().to(torch.float32).to(torch.device("mps"))
         if type(attr) == torch.Tensor:
             if attr.device != self.device:
-                attr = attr.to(self.device)
+                attr = to_torch(attr)
         # Set variable's value, can be existed variable or not existed
         setattr(self, name, attr)
 

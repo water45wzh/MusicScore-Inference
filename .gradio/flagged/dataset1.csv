@@ -1,0 +1,4 @@
+Prompt,Checkpoint Path,Config Path,Resolution,Number of Samples,CFG Scale,DDIM Steps,Output Path,Generated Image,timestamp
+"a violin score, key is A major",./ckpt/global_step_78000.pt,config.yaml,512,9,4.0,250,result.jpg,,2025-05-07 02:13:16.050383
+"a violin score, key is A major",./ckpt/global_step_78000.pt,config.yaml,1024,5,4.0,10,result.jpg,,2025-05-07 02:15:05.572188
+"a violin score, key is A major",./ckpt/global_step_78000.pt,config.yaml,1024,5,4.0,10,result.jpg,,2025-05-07 02:15:49.002054

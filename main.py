@@ -14,7 +14,7 @@ from utils import count_params, instantiate_from_config
 
 def main(args):
 
-    device = torch.device("cuda")
+    device = torch.device("mps")
 
     config = OmegaConf.load(args.config)
     print(f"Loading model by config: {args.config}")
@@ -143,6 +143,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
     main(args)
 
-    print(
-        f"Maximal memory allocated: {torch.cuda.max_memory_allocated() / 1024 ** 3:.2f} GB"
-    )
+    # print(
+    #     f"Maximal memory allocated: {torch.cuda.max_memory_allocated() / 1024 ** 3:.2f} GB"
+    # )
